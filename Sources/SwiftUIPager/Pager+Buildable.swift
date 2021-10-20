@@ -128,6 +128,11 @@ extension Pager: Buildable {
         mutating(keyPath: \.gesturePriority, value: value)
     }
 
+	/// Minimum distance for `Pager` to start scrolling
+	func minimumDragDistance(_ value: Double) -> Self {
+		mutating(keyPath: \.minimumDistance, value: value)
+	}
+
     /// Indicates which area should allow hits and react to swipes
     ///
     /// - Parameter value: area of interaction
