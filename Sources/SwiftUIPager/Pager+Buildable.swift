@@ -129,7 +129,7 @@ extension Pager: Buildable {
     }
 
 	/// Minimum distance for `Pager` to start scrolling
-	func minimumDragDistance(_ value: Double) -> Self {
+	public func minimumDragDistance(_ value: Double) -> Self {
 		mutating(keyPath: \.minimumDistance, value: value)
 	}
 
