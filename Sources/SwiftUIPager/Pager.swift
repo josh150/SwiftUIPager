@@ -216,6 +216,7 @@ public struct Pager<Element, ID, PageView>: View  where PageView: View, Element:
             .allowsDragging(allowsDragging)
             .pagingPriority(gesturePriority)
             .delaysTouches(delaysTouches)
+			.minimumDragDistance(minimumDistance)
             .sensitivity(sensitivity)
             .onDraggingBegan(onDraggingBegan)
             .onDraggingChanged(onDraggingChanged)
