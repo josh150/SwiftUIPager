@@ -25,7 +25,12 @@ public class Page: ObservableObject {
     /// - Note: Modifying its value won't trigger a `SwiftUI` update, use `update(_:)` method instead.
     public var index: Int {
         get { _index }
-        set { _index = min(totalPages - 1, max(0, newValue)) }
+        set {
+          guard isInfinite else {
+            return _index = min(totalPages - 1, max(0, newValue))
+          }
+          _index = (newValue + totalPages) % totalPages
+        }
     }
 
     /// Total number of pages
@@ -40,12 +45,16 @@ public class Page: ObservableObject {
     var lastDraggingValue: DragGesture.Value?
     
     /// `swipeGesture` velocity on the X-Axis
-   var draggingVelocity: Double = 0
+    var draggingVelocity: Double = 0
     
     #endif
 
     /// Increment resulting from the last swipe
     var pageIncrement = 0
+  
+    var isInfinite = false
+
+    var lastDigitalCrownPageOffset: CGFloat = 0
 
     /// Initializes a new instance
     /// 
@@ -72,6 +81,9 @@ extension Page {
 
         /// Will move to the first page
         case moveToFirst
+
+        /// Will increment or decrement the `index` by the passed argument
+        case move(increment: Int)
 
         /// Will move to the last page
         case moveToLast
@@ -109,6 +121,8 @@ extension Page {
             index = 0
         case .moveToLast:
             index = totalPages - 1
+        case .move(let increment):
+            index += increment
         case .new(let newIndex):
             index = newIndex
         }

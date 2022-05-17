@@ -1,2 +1,3 @@
 ### Features
-- New `onPageWillTransition(_:)` modifier. This modifier will be called whether or not the transition is successful
+- #254 New modifier `dragForwardOnly`
+- #265 Support for _watchOS_ `digitalCrownRotation`

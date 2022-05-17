@@ -9,6 +9,7 @@ import XCTest
 import SwiftUI
 @testable import SwiftUIPager
 
+@available(iOS 13.2, *)
 final class DummyTests: XCTestCase {
 
     func test_dummyGesturePriority() {
@@ -19,11 +20,6 @@ final class DummyTests: XCTestCase {
         _ = view.gesture(TapGesture(), priority: .normal)
     }
 
-    func test_dummyOnDeactivateModifier() {
-        let view = Text("dummy")
-        _ = view.onDeactivate { }
-    }
-
     func test_dummyOnAnimationCompleted() {
         let view = Text("dummy")
         _ = view.onAnimationCompleted(for: 1) { }
@@ -31,7 +27,6 @@ final class DummyTests: XCTestCase {
 
     static var allTests = [
         ("test_dummyOnAnimationCompleted", test_dummyOnAnimationCompleted),
-        ("test_dummyOnDeactivateModifier", test_dummyOnDeactivateModifier),
         ("test_dummyGesturePriority", test_dummyGesturePriority)
     ]
 

@@ -93,18 +93,6 @@ final class PagerContent_Helper_Tests: XCTestCase {
         XCTAssertEqual(result.page, 1)
         XCTAssertEqual(result.increment, 1)
     }
-
-    func test_GivenPager_WhenIsFocused_ThenTrue() {
-        let pager = givenPager
-        let output = pager.isFocused(PageWrapper(batchId: 1, keyPath: \.self, element: 0))
-        XCTAssertTrue(output)
-    }
-
-    func test_GivenPager_WhenIsFocused_ThenFalse() {
-        let pager = givenPager
-        let output = pager.isFocused(PageWrapper(batchId: 1, keyPath: \.self, element: 1))
-        XCTAssertFalse(output)
-    }
     
     func test_GivenPager_WhenScaleIncrement_ThenZero() {
         let pager = givenPager
@@ -171,12 +159,12 @@ final class PagerContent_Helper_Tests: XCTestCase {
         let pager = givenPager.interactive(scale: 0.7).pageOffset(0.1)
         let item = PageWrapper(batchId: 1, keyPath: \.self, element: 200)
         let scale = pager.scale(for: item)
-        XCTAssertEqual(scale, 0.7)
+        XCTAssertEqual(scale, 1)
     }
 
     func test_GivenPagerDragging_WhenScaleForFarItem_ThenInteractiveScale() {
         let pager = givenPager.interactive(scale: 0.7).pageOffset(-0.1)
-        let item = PageWrapper(batchId: 1, keyPath: \.self, element: 3)
+        let item = PageWrapper(batchId: 1, keyPath: \.self, element: 2)
         let scale = pager.scale(for: item)
         XCTAssertEqual(scale, 0.7)
     }
@@ -364,6 +352,7 @@ final class PagerContent_Helper_Tests: XCTestCase {
     }
     
     static var allTests = [
+        ("test_GivenPager_WhenIsEdgePage_ThenTrue", test_GivenPager_WhenIsEdgePage_ThenTrue),
         ("test_GivenPagerDragging_WhenIsEdgePage_ThenFalse", test_GivenPagerDragging_WhenIsEdgePage_ThenFalse),
         ("test_GivenPagerWithRotation3DDraggingForward_WhenAngle_ThenGreaterThanZero", test_GivenPagerWithRotation3DDraggingForward_WhenAngle_ThenGreaterThanZero),
         ("test_GivenPagerWithRotation3DDraggingBackward_WhenAngle_ThenLessThanZero", test_GivenPagerWithRotation3DDraggingBackward_WhenAngle_ThenLessThanZero),
@@ -399,8 +388,6 @@ final class PagerContent_Helper_Tests: XCTestCase {
         ("test_GivenPager_WhenNumberOfPages_ThenDataCount", test_GivenPager_WhenNumberOfPages_ThenDataCount),
         ("test_GivenPager_WhenAxisForItem_ThenZero", test_GivenPager_WhenAxisForItem_ThenZero),
         ("test_GivenPagerWithRotation_WhenAxisForItem_ThenRotationAxis", test_GivenPagerWithRotation_WhenAxisForItem_ThenRotationAxis),
-        ("test_GivenPager_WhenIsFocused_ThenTrue", test_GivenPager_WhenIsFocused_ThenTrue),
-        ("test_GivenPager_WhenIsFocused_ThenFalse", test_GivenPager_WhenIsFocused_ThenFalse),
         ("test_GivenHighSensitivePager_WhenCurrentPage_ThenThree", test_GivenHighSensitivePager_WhenCurrentPage_ThenThree),
         ("test_GivenHighSensitivePager_WhenCurrentPage_ThenTwo", test_GivenHighSensitivePager_WhenCurrentPage_ThenTwo),
         ("test_GivenCustomSensitivePager_WhenCurrentPage_ThenTwo", test_GivenCustomSensitivePager_WhenCurrentPage_ThenTwo),

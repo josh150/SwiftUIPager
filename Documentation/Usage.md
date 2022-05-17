@@ -84,7 +84,14 @@ Pager(...)
     .itemAspectRatio(0.6)
 ```
 
-<img src="/resources/usage/orientation-alignment-start.gif" alt="Pages aligned to the start of the pager" height="640"/>
+### Constrain direction
+
+It is possible to force `Pager` to scroll forwards only. This can be done by using `dragForwardOnly` modifier:
+
+```swift
+Pager(...)
+    .dragForwardOnly()
+```
 
 ### Alignment
 
@@ -197,7 +204,7 @@ Get a interactive fading effect on your items by using `interactive(opacity:)`:
 
 ```swift
 Pager(...)
-    .interacive(opacity: 0.4)
+    .interactive(opacity: 0.4)
     .preferredItemSize(CGSize(width: 150, height: 150))
     .itemSpacing(10)
 ```
