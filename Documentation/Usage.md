@@ -42,7 +42,7 @@ By default, `Pager` is configured as:
 
 > **Note** `Pager` has no intrinsic size. This means that its size depends on the available space or the extrinsic size specified with `frame` modifier.
 >
-> If you're using the [leacy support](/Documentation/Legacy.md), you'll need to wrap any reference to `Pager` with `if #available(iOS 13, *)` or any other platform and version you may require.
+> If you're using the [legacy support](/Documentation/Legacy.md), you'll need to wrap any reference to `Pager` with `if #available(iOS 13, *)` or any other platform and version you may require.
 
 ### Configure your page size
 
@@ -74,13 +74,13 @@ Pager(...)
 
 <img src="/resources/usage/vertical-pager.gif" alt="Vertical pager" height="640"/>
 
-Pass a direction to `horizontal` or `vertical` to change the scroll direction. For instance, you can have a horizontal `Pager` that scrolls right-to-left:
+Pass a direction to `horizontal` or `vertical` to change the scroll direction. For instance, you can have a horizontal `Pager` that scrolls end-to-start:
 
 ```swift
 Pager(...)
     .itemSpacing(10)
     .alignment(.start)
-    .horizontal(.rightToLeft)
+    .horizontal(.endToStart)
     .itemAspectRatio(0.6)
 ```
 
@@ -114,7 +114,7 @@ By default, `Pager` will reveal the neighbor items completely (100% of their rel
 
 ```swift
 Pager(...)
-    .singlePagination(0.33, sensitivity: .custom(0.2))
+    .singlePagination(ratio: 0.33, sensitivity: .custom(0.2))
     .preferredItemSize(CGSize(width: 300, height: 400))
     .itemSpacing(10)
     .background(Color.gray.opacity(0.2))
